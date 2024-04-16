@@ -3,16 +3,19 @@ import { LitElement, css, html } from 'lit';
 export class TaskComponent extends LitElement {
   static get properties() {
     return {
-      taskId: { type: Number }, // Add taskId property to hold the ID of the task
-      task: { type: Object }, // Add task property to hold the fetched task
+      taskId: { type: Number },
+      task: { type: Object },
     };
   }
 
   constructor() {
     super();
-    this.taskId = 1; // Default task ID
-    this.task = null; // Initialize task to null
-    this.fetch(); // Fetch task by default ID
+    this.task = null;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.fetch(); // Fetch task after element is connected to the DOM
   }
 
   async fetch() {
@@ -35,35 +38,58 @@ export class TaskComponent extends LitElement {
           <div class="task">
             <h3>${this.task.title}</h3>
             <p>${this.task.description}</p>
-            <p>Due Date: ${this.task.dueDate}</p>
+            <p>Due Date: ${this.formatDate(this.task.dueDate)}</p> <!-- Formatting dueDate -->
             <p>Priority: ${this.task.priority}</p>
             <p>Status: ${this.task.status}</p>
-            <p>User: ${this.task.user.username} (${this.task.user.handle})</p>
+            <p class="user-info">User: ${this.task.user.username} (${this.task.user.handle})</p>
           </div>` :
-        html`<p>Loading task...</p>`
+        html`<p class="loading-message">Loading task...</p>`
     }
       </div>
     `;
   }
 
+  formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
+
   static get styles() {
     return css`
       :host {
-        
+        display: block;
       }
       
       #container {
-        background-color: var(--color-dark);
-        max-width: 500px;
-        min-height: 500px;
+        background-color: var(--color-light);
+        max-width: 400px;
+        margin: 0;
       }
       
       .task {
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
+        padding: 20px;
+        border: 1px solid var(--color-secondary);
         border-radius: 5px;
-        background-color: #fff;
+        background-color: var(--color-light);
+      }
+      
+      .task h3 {
+        color: var(--color-primary);
+        margin-top: 0;
+      }
+      
+      .task p {
+        color: var(--color-primary);
+        margin-bottom: 10px;
+      }
+      
+      .user-info {
+        font-style: italic;
+        color: var(--color-secondary);
+      }
+      
+      .loading-message {
+        color: var(--color-primary);
       }
     `;
   }
