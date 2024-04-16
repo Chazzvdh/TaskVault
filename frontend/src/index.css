@@ -1,14 +1,21 @@
 :root {
-    --color-primary: #007bff;
-    --color-secondary: #6c757d;
+    --color-primary: #383838;
+    --color-secondary: #949494;
+    --color-light: #f8f9fa;
+
+    --color-accent: #007bff;
+
     --color-success: #28a745;
     --color-danger: #dc3545;
     --color-warning: #ffc107;
     --color-info: #17a2b8;
-    --color-light: #f8f9fa;
-    --color-dark: #343a40;
-    --color-white: #fff;
-    --color-black: #000;
+
+    --header-height: 100px;
+    --footer-height: 50px;
+    --side-width: 200px;
+
+    --primary-side-margin: 0 10vw;
+    --primary-side-padding: 0 10vw;
 }
 
 body {
@@ -18,4 +25,57 @@ body {
     line-height: 1.5;
     color: var(--color-secondary);
     background-color: var(--color-light);
+
+    margin: 0;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-areas:
+    "header header header"
+    "menu main main"
+    "footer footer footer";
+    grid-template-rows: var(--header-height) auto var(--footer-height);
+    grid-template-columns: var(--side-width) 1fr var(--side-width);
+    min-height: 100%;
+}
+
+@media (max-width: 800px) {
+    #grid-container {
+        grid-template-areas:
+      "header"
+      "menu"
+      "main"
+      "footer";
+        grid-template-rows: var(--header-height) auto auto var(--footer-height);
+        grid-template-columns: 1fr;
+    }
+}
+
+header-element {
+    grid-area: header;
+    padding: var(--primary-side-padding);
+    z-index: 2;
+    background-color: var(--color-primary);
+}
+
+main-element {
+    grid-area: main;
+    z-index: 1;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    background-color: var(--color-light);
+}
+
+footer-element {
+    grid-area: footer;
+    padding: var(--primary-side-padding);
+    z-index: 2;
+    background-color: var(--color-primary);
+}
+
+
+menu-element {
+    grid-area: menu;
+    z-index: 0;
+    background-color: var(--color-secondary);
 }

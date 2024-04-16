@@ -5,12 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TaskVault</title>
-    <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/my-element.js"></script>
+    <link rel="stylesheet" href="./src/index.css"/>
+    <script type="module" src="src/index.js"></script>
   </head>
   <body>
-    <my-element>
-
-    </my-element>
+    <div id="grid-container">
+      <header-element class="container"></header-element>
+      <menu-element></menu-element>
+      <main-element class="container">
+        <div id="outlet"></div>
+      </main-element>
+      <side-element></side-element>
+      <footer-element class="container"></footer-element>
+    </div>
   </body>
 </html>
