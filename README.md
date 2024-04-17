@@ -27,7 +27,7 @@
    npm install
    ```
    ```bash
-    npm run dev
+   npm run dev
    ```
 
 ## Vite + Spring Boot Project
