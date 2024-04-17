@@ -1,21 +1,29 @@
 :root {
-    --color-primary: #383838;
-    --color-secondary: #949494;
-    --color-light: #f8f9fa;
+    --color-primary: #1a1c1e;
+    --color-secondary: #1f2228;
+    --border-color: #58616b;
 
-    --color-accent: #007bff;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+
+    --color-accent: #2dba4e;
 
     --color-success: #28a745;
     --color-danger: #dc3545;
     --color-warning: #ffc107;
     --color-info: #17a2b8;
 
-    --header-height: 100px;
+    --header-height: 80px;
     --footer-height: 50px;
+
     --side-width: 200px;
 
     --primary-side-margin: 0 10vw;
     --primary-side-padding: 0 10vw;
+
+    --text-size-1: 1rem;
+    --text-size-2: 0.90rem;
+    --text-size-3: 0.75rem;
 }
 
 body {
@@ -23,9 +31,8 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-secondary);
-    background-color: var(--color-light);
-
+    color: var(--text-primary);
+    background-color: var(--color-primary);
     margin: 0;
 }
 
@@ -54,28 +61,26 @@ body {
 
 header-element {
     grid-area: header;
-    padding: var(--primary-side-padding);
-    z-index: 2;
     background-color: var(--color-primary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
 }
 
 main-element {
     grid-area: main;
-    z-index: 1;
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
-    background-color: var(--color-light);
+    background-color: var(--color-primary);
 }
 
 footer-element {
     grid-area: footer;
-    padding: var(--primary-side-padding);
-    z-index: 2;
     background-color: var(--color-primary);
+    color: var(--text-primary);
 }
 
 
 menu-element {
     grid-area: menu;
-    z-index: 0;
     background-color: var(--color-secondary);
+    color: var(--text-primary);
 }
