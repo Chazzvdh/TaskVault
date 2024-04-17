@@ -1,8 +1,6 @@
-# Vite + Spring Boot Project
+# TaskVault
 
-This project combines Vite for the frontend and Spring Boot for the backend.
-
-## Installation
+## Getting Started
 
 1. **Clone the repository:**
 
@@ -11,13 +9,33 @@ This project combines Vite for the frontend and Spring Boot for the backend.
     cd TaskVault
     ```
 
-2. **Install frontend dependencies:**
+2. **Install dependencies:**
 
     ```bash
     npm install
     cd frontend
     npm install
     ```
+
+3. **Start the database:**
+
+    ```bash
+    docker-compose up
+    ```
+
+4. **Run the Spring application:**
+
+
+5. **Start the frontend:**
+
+    ```bash
+    cd frontend
+    npm run dev
+    ```
+
+## Vite + Spring Boot Project
+
+This project integrates Vite for the frontend and Spring Boot for the backend.
 
 ## Usage
 
