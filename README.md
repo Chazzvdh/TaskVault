@@ -2,30 +2,23 @@
 
 ## Getting Started
 
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/Chazzvdh/TaskVault.git
-    cd TaskVault
-    ```
-
-2. **Install dependencies:**
+1. **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3. **Start the database:**
+2. **Start the database:**
 
     ```bash
     docker-compose up
     ```
 
-4. **Run the Spring application:**
+3. **Run the Spring application:**
 
     Not yet implemented, just run the spring normally via the GUI
 
-5. **Start the frontend:**
+4. **Start the frontend:**
 
     ```bash
     cd frontend
