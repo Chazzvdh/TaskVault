@@ -13,8 +13,6 @@
 
     ```bash
     npm install
-    cd frontend
-    npm install
     ```
 
 3. **Start the database:**
@@ -25,11 +23,13 @@
 
 4. **Run the Spring application:**
 
+    Not yet implemented, just run the spring normally via the GUI
 
 5. **Start the frontend:**
 
     ```bash
     cd frontend
+    npm install
     npm run dev
     ```
 
