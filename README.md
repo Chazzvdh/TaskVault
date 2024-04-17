@@ -20,11 +20,15 @@
 
 4. **Start the frontend:**
 
-    ```bash
-    cd frontend
-    npm install
+   ```bash
+   cd frontend
+   ```
+   ```bash
+   npm install
+   ```
+   ```bash
     npm run dev
-    ```
+   ```
 
 ## Vite + Spring Boot Project
 
