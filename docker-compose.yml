@@ -1,28 +1,15 @@
-version: '3.8'
+version: '3.7'
 
 services:
-  spring_app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - spring_db
+  postgres:
+    image: postgres:latest
+    container_name: taskvault_postgres_db
+    restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://spring_db:3306/taskvaultdb
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: password
-
-  spring_db:
-    image: mysql:latest
-    environment:
-      MYSQL_DATABASE: taskvaultdb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: root_password
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taskvaultdb
     ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data:
+      - "5432:5432"
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data
