@@ -36,11 +36,10 @@ export class UserComponent extends LitElement {
     <div id="container">
       ${this.user ? html`
         <div class="user">
-          <h3>${this.user.username}</h3>
-          <div>${this.user.username} <span id="username" class="text-size-3">@${this.user.handle}</span></div>
+          <h3>${this.user.username} <span class="text-size-3 handle">@${this.user.handle}</span></h3>
           <h4>Tasks:</h4>
           <ul>
-            ${this.user.tasks.map(task => html`<li>${task.title} [Task ID: ${task.id}]</li>`)}
+            ${this.user.tasks.map(task => html`<li>${task.title} <span class="white">></span> <a href="/" class="green">${task.id}</a></li>`)}
           </ul>
         </div>` :
         html`<p class="loading-message">Loading user...</p>`
@@ -56,39 +55,65 @@ export class UserComponent extends LitElement {
 
   static get styles() {
     return css`
-      
+
       #container {
         background-color: var(--color-light);
         max-width: 400px;
-        margin: 10px;
-      }
-      
-      .user {
+
         padding: 20px;
-        border: 1px solid var(--border-color);
+        margin: 10px;
+
         border-radius: 5px;
+        border: 1px solid var(--border-color);
+        border-bottom: 5px solid var(--color-accent-green);
+      }
+
+      .user {
         background-color: var(--color-light);
       }
-      
+
       .user h3 {
         color: var(--text-primary);
         margin-top: 0;
       }
-      
+
       .user p {
         color: var(--text-secondary);
         margin-bottom: 10px;
       }
       
-      .user #username {
-        color: var(--color-accent);
+      .handle {
+        color: var(--color-handle);
+      }
+
+      .gray {
+        color: var(--text-secondary);
+      }
+
+      .white {
+        color: var(--text-primary);
+      }
+
+      .user ul {
+        padding-left: 0;
+        padding-inline-start: 2ch;
+        color: var(--text-secondary);
+      }
+
+      .user li::marker {
+        font-size: var(--text-size-1);
+        color: var(--color-accent-green);
       }
       
+      .user a {
+        color: var(--color-accent-green);
+      }
+
       .user-info {
         font-style: italic;
         color: var(--color-secondary);
       }
-      
+
       .loading-message {
         color: var(--color-primary);
       }

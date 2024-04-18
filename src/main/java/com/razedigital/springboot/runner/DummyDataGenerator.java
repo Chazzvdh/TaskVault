@@ -42,7 +42,7 @@ public class DummyDataGenerator implements CommandLineRunner {
         task1.setDescription("Implement user authentication using Spring Security");
         task1.setDueDate(LocalDate.now().plusDays(5));
         task1.setPriority(Priority.HIGH);
-        task1.setStatus(TaskStatus.IN_PROGRESS);
+        task1.setStatus(TaskStatus.TODO);
         task1.setUser(user1);
         taskRepository.save(task1);
 
@@ -51,7 +51,7 @@ public class DummyDataGenerator implements CommandLineRunner {
         task2.setDescription("Design UI for the dashboard using Bootstrap");
         task2.setDueDate(LocalDate.now().plusDays(7));
         task2.setPriority(Priority.MEDIUM);
-        task2.setStatus(TaskStatus.TODO);
+        task2.setStatus(TaskStatus.IN_PROGRESS);
         task2.setUser(user1);
         taskRepository.save(task2);
 
@@ -61,7 +61,7 @@ public class DummyDataGenerator implements CommandLineRunner {
         task3.setDescription("Refactor backend code for better performance");
         task3.setDueDate(LocalDate.now().plusDays(3));
         task3.setPriority(Priority.HIGH);
-        task3.setStatus(TaskStatus.TODO);
+        task3.setStatus(TaskStatus.IN_REVIEW);
         task3.setUser(user2);
         taskRepository.save(task3);
 
@@ -70,7 +70,7 @@ public class DummyDataGenerator implements CommandLineRunner {
         task4.setDescription("Write documentation for the RESTful API endpoints");
         task4.setDueDate(LocalDate.now().plusDays(4));
         task4.setPriority(Priority.LOW);
-        task4.setStatus(TaskStatus.TODO);
+        task4.setStatus(TaskStatus.DONE);
         task4.setUser(user2);
         taskRepository.save(task4);
     }

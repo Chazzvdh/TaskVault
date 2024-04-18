@@ -6,7 +6,13 @@
     --text-primary: #f8f9fa;
     --text-secondary: #adb5bd;
 
-    --color-accent: #2dba4e;
+    --color-accent-green: #2dba4e;
+    --color-accent-red: #ff4d4f;
+    --color-accent-yellow: #fadb14;
+    --color-accent-blue: #1890ff;
+
+    --color-handle: #80bdff;
+
 
     --color-success: #28a745;
     --color-danger: #dc3545;
@@ -76,6 +82,7 @@ footer-element {
     grid-area: footer;
     background-color: var(--color-primary);
     color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
 }
 
 
