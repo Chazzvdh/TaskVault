@@ -1,31 +1,44 @@
 :root {
-    --color-primary: #383838;
-    --color-secondary: #949494;
-    --color-light: #f8f9fa;
+    --color-primary: #1a1c1e;
+    --color-secondary: #1f2228;
+    --border-color: #58616b;
 
-    --color-accent: #007bff;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --text-dark: #000000;
 
-    --color-success: #28a745;
-    --color-danger: #dc3545;
-    --color-warning: #ffc107;
-    --color-info: #17a2b8;
+    --color-accent-green: #2dba4e;
+    --color-accent-red: #ff4d4f;
+    --color-accent-yellow: #fadb14;
+    --color-accent-blue: #1890ff;
 
-    --header-height: 100px;
+    --priority-1: #ff4d4f;
+    --priority-2: #FF9800;
+    --priority-3: #fadb14;
+
+    --color-handle: #80bdff;
+
+
+    --header-height: 80px;
     --footer-height: 50px;
+
     --side-width: 200px;
+    --menu-width: 50px;
 
     --primary-side-margin: 0 10vw;
     --primary-side-padding: 0 10vw;
+
+    --text-size-1: 1rem;
+    --text-size-2: 0.90rem;
+    --text-size-3: 0.75rem;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;
-    color: var(--color-secondary);
-    background-color: var(--color-light);
-
+    color: var(--text-primary);
+    background-color: var(--color-primary);
     margin: 0;
 }
 
@@ -37,7 +50,6 @@ body {
     "footer footer footer";
     grid-template-rows: var(--header-height) auto var(--footer-height);
     grid-template-columns: var(--side-width) 1fr var(--side-width);
-    min-height: 100%;
 }
 
 @media (max-width: 800px) {
@@ -54,28 +66,26 @@ body {
 
 header-element {
     grid-area: header;
-    padding: var(--primary-side-padding);
-    z-index: 2;
     background-color: var(--color-primary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
 }
 
 main-element {
     grid-area: main;
-    z-index: 1;
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
-    background-color: var(--color-light);
+    background-color: var(--color-primary);
 }
 
 footer-element {
     grid-area: footer;
-    padding: var(--primary-side-padding);
-    z-index: 2;
     background-color: var(--color-primary);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
 }
-
 
 menu-element {
     grid-area: menu;
-    z-index: 0;
     background-color: var(--color-secondary);
+    border-right: 1px solid var(--border-color);
 }
