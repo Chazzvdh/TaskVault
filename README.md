@@ -38,7 +38,7 @@ This project integrates Vite for the frontend and Spring Boot for the backend.
 
 ## Usage
 
-Once the backend and frontend are running, you can access the application by navigating to `http://localhost:5173/` in your web browser.
+Once the backend and frontend are running, you can access the application by navigating to the given link by Vite in your web browser.
 
 ## Contributing
 
