@@ -1,4 +1,6 @@
 # TaskVault
+## Preview Images
+![image](https://github.com/Chazzvdh/TaskVault/assets/114153884/b0ac129a-0b07-43d1-abd6-2feb5ddd7ee3)
 
 ## Getting Started
 
