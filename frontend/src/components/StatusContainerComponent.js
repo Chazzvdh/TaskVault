@@ -75,56 +75,46 @@ export class StatusContainerComponent extends LitElement {
             <option class="filter-input" value="">All Statuses</option>
             ${this.statuses.map(status => html`<option value="${status}">${status}</option>`)}
           </select>
-          <input class="filter-input" type="text" placeholder="Title" @input="${this.handleTitleFilter}">
-          <input class="filter-input" type="text" placeholder="Description" @input="${this.handleDescriptionFilter}">
+          <input class="filter-input" type="text" placeholder="Context" @input="${this.handleDescriptionFilter}">
         </div>
         ${this.tasks.length > 0 ? html`
           <div class="status-containers">
+              ${this.statuses.map(status => html`
             <div class="status-container">
-              <h2>TODO</h2>
-              <div class="tasks">
-                ${this.renderTasksByStatus('TODO')}
-              </div>
+                <h2 class="status">${status.toLowerCase().replace('_', ' ')}</h2>
+                <div class="tasks">
+                    ${this.renderTasksByStatus(status)}
+                </div>
             </div>
-            <div class="status-container">
-              <h2>IN PROGRESS</h2>
-              <div class="tasks">
-                ${this.renderTasksByStatus('IN_PROGRESS')}
-              </div>
-            </div>
-            <div class="status-container">
-              <h2>IN REVIEW</h2>
-              <div class="tasks">
-                ${this.renderTasksByStatus('IN_REVIEW')}
-              </div>
-            </div>
-            <div class="status-container">
-              <h2>DONE</h2>
-              <div class="tasks">
-                ${this.renderTasksByStatus('DONE')}
-              </div>
-            </div>
+            `)}
           </div>
         ` : html`<p class="loading-message">Loading tasks...</p>`}
       </div>
     `;
     }
 
+    /**
+     * Update priority filter
+     * @param event
+     */
     handlePriorityFilter(event) {
         this.priorityFilter = event.target.value;
         this.requestUpdate();
     }
 
+    /**
+     * Update status filter
+     * @param event
+     */
     handleStatusFilter(event) {
         this.statusFilter = event.target.value;
         this.requestUpdate();
     }
 
-    handleTitleFilter(event) {
-        this.titleFilter = event.target.value.toLowerCase();
-        this.requestUpdate();
-    }
-
+    /**
+     * Update description filter
+     * @param event
+     */
     handleDescriptionFilter(event) {
         this.descriptionFilter = event.target.value.toLowerCase();
         this.requestUpdate();
@@ -141,17 +131,21 @@ export class StatusContainerComponent extends LitElement {
     `);
     }
 
+    /**
+     * Filter tasks by status
+     * @param status
+     * @returns {*[]}
+     */
     filteredTasks(status) {
         return this.tasks
             .filter(task => {
                 // Apply filters
                 const priorityMatch = !this.priorityFilter || task.priority === this.priorityFilter;
                 const statusMatch = !this.statusFilter || task.status === this.statusFilter;
-                const titleMatch = !this.titleFilter || task.title.toLowerCase().includes(this.titleFilter);
                 const descriptionMatch = !this.descriptionFilter || task.description.toLowerCase().includes(this.descriptionFilter);
 
                 // Combine all filter conditions
-                return priorityMatch && statusMatch && titleMatch && descriptionMatch;
+                return priorityMatch && statusMatch && descriptionMatch;
             })
             .filter(task => task.status === status);
     }
@@ -189,7 +183,7 @@ export class StatusContainerComponent extends LitElement {
       }
           
       .status-container h2 {
-        margin: 0;
+        margin: 0 0 10px 0;
       }
 
       .loading-message {
@@ -205,6 +199,10 @@ export class StatusContainerComponent extends LitElement {
         background-color: var(--color-secondary);
         color: var(--text-primary);
         border: 1px solid var(--border-color);
+      }
+          
+      .status {
+        text-transform: capitalize;
       }
     `;
     }
