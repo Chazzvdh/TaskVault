@@ -1,4 +1,5 @@
 import { LitElement, css, html } from 'lit';
+import { API_URL } from '../application-info.js';
 
 export class UserComponent extends LitElement {
   static get properties() {
@@ -20,7 +21,7 @@ export class UserComponent extends LitElement {
 
   async fetch() {
     try {
-      const response = await fetch(`http://localhost:8080/api/user/${this.userId}`);
+      const response = await fetch(`${API_URL}/api/user/${this.userId}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

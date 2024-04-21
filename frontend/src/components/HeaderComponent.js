@@ -1,4 +1,5 @@
 import {LitElement, css, html} from "lit";
+import { VERSION } from '../application-info.js';
 
 export class HeaderComponent extends LitElement {
 
@@ -10,11 +11,11 @@ export class HeaderComponent extends LitElement {
     render() {
         return html`
             <div id="left" class="centered">
-                <img src="taskvault-logo.svg" alt="Task Vault Logo" style="width: calc(var(--header-height) - 41px);">
+                <img src="taskvault-logo.svg" alt="Task Vault Logo" style="width: calc(var(--header-height) - 21px);">
                 <span>Task Vault</span>
             </div>
             <div id="right" class="centered">
-                <p>Version ${this.getVersion()}</p>
+                <p>Version ${VERSION}</p>
             </div>
         `;
     }
