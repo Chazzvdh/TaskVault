@@ -1,5 +1,6 @@
 import { LitElement, css, html } from 'lit';
 import './TaskComponent.js';
+import { API_URL } from "../application-info.js";
 
 export class StatusContainerComponent extends LitElement {
     static get properties() {
@@ -10,7 +11,8 @@ export class StatusContainerComponent extends LitElement {
             titleFilter: { type: String },
             descriptionFilter: { type: String },
             priorities: { type: Array }, // Array of priority options
-            statuses: { type: Array } // Array of status options
+            statuses: { type: Array }, // Array of status options
+            sortDirection: { type: String } // Sorting direction (ascending or descending)
         };
     }
 
@@ -23,6 +25,7 @@ export class StatusContainerComponent extends LitElement {
         this.descriptionFilter = '';
         this.priorities = [];
         this.statuses = [];
+        this.sortDirection = 'desc'; // Default sorting direction is descending (newest to oldest)
     }
 
     connectedCallback() {
@@ -33,8 +36,8 @@ export class StatusContainerComponent extends LitElement {
 
     async fetchEnums() {
         try {
-            const priorityResponse = await fetch(`http://localhost:8080/api/enums/priority`);
-            const statusResponse = await fetch(`http://localhost:8080/api/enums/taskstatus`);
+            const priorityResponse = await fetch(`${API_URL}/api/enums/priority`);
+            const statusResponse = await fetch(`${API_URL}/api/enums/taskstatus`);
 
             if (!priorityResponse.ok || !statusResponse.ok) {
                 throw new Error('Failed to fetch enums');
@@ -52,15 +55,33 @@ export class StatusContainerComponent extends LitElement {
 
     async fetchTasks() {
         try {
-            const response = await fetch(`http://localhost:8080/api/task`);
+            const response = await fetch(`${API_URL}/api/task`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            this.tasks = data;
+            // Sort tasks by due date
+            this.tasks = this.sortTasksByDueDate(data);
         } catch (error) {
             console.error('Error fetching tasks:', error);
         }
+    }
+
+    sortTasksByDueDate(tasks) {
+        // Sorting function
+        const compare = (a, b) => {
+            const dateA = new Date(a.dueDate.join('-'));
+            const dateB = new Date(b.dueDate.join('-'));
+
+            if (this.sortDirection === 'desc') {
+                return dateB - dateA; // Newest to oldest
+            } else {
+                return dateA - dateB; // Oldest to newest
+            }
+        };
+
+        // Sort and return tasks
+        return tasks.sort(compare);
     }
 
     render() {
@@ -74,6 +95,10 @@ export class StatusContainerComponent extends LitElement {
           <select class="filter-input" @change="${this.handleStatusFilter}">
             <option class="filter-input" value="">All Statuses</option>
             ${this.statuses.map(status => html`<option value="${status}">${status}</option>`)}
+          </select>
+          <select class="filter-input" @change="${this.handleSortDirection}">
+            <option value="desc">Due Date - Farthest</option>
+            <option value="asc">Due Date - Nearest</option>
           </select>
           <input class="filter-input" type="text" placeholder="Context" @input="${this.handleDescriptionFilter}">
         </div>
@@ -117,6 +142,16 @@ export class StatusContainerComponent extends LitElement {
      */
     handleDescriptionFilter(event) {
         this.descriptionFilter = event.target.value.toLowerCase();
+        this.requestUpdate();
+    }
+
+    /**
+     * Update sorting direction
+     * @param event
+     */
+    handleSortDirection(event) {
+        this.sortDirection = event.target.value;
+        this.tasks = this.sortTasksByDueDate(this.tasks);
         this.requestUpdate();
     }
 

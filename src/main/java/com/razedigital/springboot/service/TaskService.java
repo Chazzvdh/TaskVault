@@ -26,6 +26,18 @@ public class TaskService {
         }
     }
 
+    public void updateTask(Task task) {
+        try {
+            if (taskRepository.existsById(task.getId())) {
+                taskRepository.save(task);
+            } else {
+                throw new TaskNotFoundException(task.getId());
+            }
+        } catch (Exception e) {
+            throw new CrudFailException("Failed to update task");
+        }
+    }
+
     public void deleteTask(Long id) {
         try {
             taskRepository.deleteById(id);
