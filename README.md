@@ -1,5 +1,8 @@
 # TaskVault
 
+## Preview Images
+![TaskVault Preview](https://github.com/Chazzvdh/TaskVault/assets/114153884/b0ac129a-0b07-43d1-abd6-2feb5ddd7ee3)
+
 ## Getting Started
 
 1. **Install dependencies:**
@@ -16,19 +19,15 @@
 
 3. **Run the Spring application:**
 
-    Not yet implemented, just run the spring normally via the GUI
+   > *Not yet implemented, please run the Spring application via the GUI.*
 
 4. **Start the frontend:**
 
-   ```bash
-   cd frontend
-   ```
-   ```bash
-   npm install
-   ```
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    cd frontend
+    npm install
+    npm run dev
+    ```
 
 ## Vite + Spring Boot Project
 
@@ -36,7 +35,7 @@ This project integrates Vite for the frontend and Spring Boot for the backend.
 
 ## Usage
 
-Once the backend and frontend are running, you can access the application by navigating to `http://localhost:5173/` in your web browser.
+Once both backend and frontend are running, access the application by navigating to the provided Vite link in your web browser.
 
 ## Contributing
 
@@ -44,4 +43,4 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 ## License
 
-This project is licensed under the [MIT License]
+This project is licensed under the [MIT License](LICENSE).

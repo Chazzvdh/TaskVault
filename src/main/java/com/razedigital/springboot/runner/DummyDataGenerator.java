@@ -25,9 +25,9 @@ public class DummyDataGenerator implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Create dummy users
         User user1 = new User();
-        user1.setUsername("john_doe");
-        user1.setPassword("password123");
-        user1.setHandle("JohnDoe92");
+        user1.setUsername("Jeroen Elswijk");
+        user1.setPassword("poepslaaf2003");
+        user1.setHandle("JeroenElswijk");
         userRepository.save(user1);
 
         User user2 = new User();

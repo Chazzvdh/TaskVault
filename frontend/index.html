@@ -7,21 +7,28 @@
     <title>TaskVault</title>
     <link rel="stylesheet" href="./src/index.css"/>
     <script type="module" src="src/index.js"></script>
+
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
   </head>
   <body>
     <div id="grid-container">
-      <header-element class="container">
-        <p>TaskVault</p>
-      </header-element>
-      <menu-element class="container">
-      </menu-element>
+      <header-container class="container">
+        <header-element></header-element>
+      </header-container>
 
-      <main-element class="container">
+      <menu-container class="container">
+        <menu-element></menu-element>
+      </menu-container>
+
+      <main-container class="container">
         <status-container-element></status-container-element>
-      </main-element>
-      <footer-element class="container">
-        <p>Footer</p>
-      </footer-element>
+      </main-container>
+
+      <footer-container class="container">
+        <footer-element></footer-element>
+      </footer-container>
     </div>
   </body>
 </html>
