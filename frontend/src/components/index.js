@@ -7,7 +7,9 @@ import {HeaderComponent} from "./HeaderComponent.js";
 
 import {MenuButtonComponent} from "./MenuButtonComponent.js";
 
+import {IconComponent} from "./IconComponent.js";
+
 export {
     TaskComponent, UserComponent, StatusContainerComponent,
-    MenuComponent, HeaderComponent, MenuButtonComponent
+    MenuComponent, HeaderComponent, MenuButtonComponent, IconComponent
 };
