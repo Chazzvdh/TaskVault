@@ -1,6 +1,7 @@
 import { LitElement, css, html } from 'lit';
 import '../TaskComponent.js';
-import { API_URL } from "../../application-info.js";
+import {API_URL} from "../../application-info.js";
+import {EnumUtils} from "../util/index.js";
 
 export class StatusContainerComponent extends LitElement {
     static get properties() {
@@ -35,22 +36,9 @@ export class StatusContainerComponent extends LitElement {
     }
 
     async fetchEnums() {
-        try {
-            const priorityResponse = await fetch(`${API_URL}/api/enums/priority`);
-            const statusResponse = await fetch(`${API_URL}/api/enums/taskstatus`);
-
-            if (!priorityResponse.ok || !statusResponse.ok) {
-                throw new Error('Failed to fetch enums');
-            }
-
-            const priorities = await priorityResponse.json();
-            const statuses = await statusResponse.json();
-
-            this.priorities = priorities;
-            this.statuses = statuses;
-        } catch (error) {
-            console.error('Error fetching enums:', error);
-        }
+        const { priorities, statuses } = await EnumUtils.fetchEnums(); // Use fetchEnums from EnumUtils
+        this.priorities = priorities;
+        this.statuses = statuses;
     }
 
     async fetchTasks() {

@@ -1,4 +1,6 @@
 import { LitElement, css, html } from 'lit';
+import {API_URL} from "../application-info.js";
+import { EnumUtils } from './util/index.js'; // Import EnumUtils
 
 export class TaskComponent extends LitElement {
   static get properties() {
@@ -13,6 +15,17 @@ export class TaskComponent extends LitElement {
     this.task = null;
     this.editing = false;
     this.updatedTask = {};
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.fetchEnums(); // Fetch enums after element is connected to the DOM
+  }
+
+  async fetchEnums() {
+    const { priorities, statuses } = await EnumUtils.fetchEnums(); // Use fetchEnums from EnumUtils
+    this.priorities = priorities;
+    this.statuses = statuses;
   }
 
   render() {
@@ -43,15 +56,12 @@ export class TaskComponent extends LitElement {
               <textarea placeholder="Description" .value=${this.updatedTask.description} @input=${(e) => this.updatedTask.description = e.target.value}></textarea>
               <input type="date" placeholder="Due Date" .value=${this.formatDate(this.updatedTask.dueDate)} @input=${(e) => this.updatedTask.dueDate = e.target.valueAsDate.toISOString().split('T')[0]}>
               <select @change=${(e) => this.updatedTask.priority = e.target.value}>
-                <option value="LOW" ?selected=${this.updatedTask.priority === "LOW"}>Low</option>
-                <option value="MEDIUM" ?selected=${this.updatedTask.priority === "MEDIUM"}>Medium</option>
-                <option value="HIGH" ?selected=${this.updatedTask.priority === "HIGH"}>High</option>
+                <option value="">Priority</option>
+                ${this.priorities.map(priority => html`<option value="${priority}">${priority}</option>`)}
               </select>
               <select @change=${(e) => this.updatedTask.status = e.target.value}>
-                <option value="TODO" ?selected=${this.updatedTask.status === "TODO"}>To Do</option>
-                <option value="IN_PROGRESS" ?selected=${this.updatedTask.status === "IN_PROGRESS"}>In Progress</option>
-                <option value="IN_REVIEW" ?selected=${this.updatedTask.status === "IN_REVIEW"}>In Review</option>
-                <option value="DONE" ?selected=${this.updatedTask.status === "DONE"}>Done</option>
+                <option value="">Status</option>
+                ${this.statuses.map(status => html`<option value="${status}">${status}</option>`)}
               </select>
               <button @click=${this.saveChanges}>Save Changes</button>
               <button @click=${this.cancelEdit}>Cancel</button>
@@ -70,7 +80,7 @@ export class TaskComponent extends LitElement {
   }
 
   saveChanges() {
-    fetch(`http://localhost:8080/api/task/${this.task.id}`, {
+    fetch(`${API_URL}/api/task/${this.task.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -251,9 +261,17 @@ export class TaskComponent extends LitElement {
         margin-top: 10px;
         padding: 5px;
         background-color: var(--color-secondary);
-        border: none;
+        border: 1px solid var(--color-primary);
         color: var(--text-primary);
       }
+
+      .edit-popup input:hover,
+      .edit-popup textarea:hover,
+      .edit-popup select:hover,
+      .edit-popup button:hover {
+        border: 1px solid var(--border-color);
+      }
+      
       
       #screen-overlay {
         position: fixed;
