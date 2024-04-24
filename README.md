@@ -1,6 +1,13 @@
 # TaskVault
 ## Preview Images
-![image](https://github.com/Chazzvdh/TaskVault/assets/114153884/b0ac129a-0b07-43d1-abd6-2feb5ddd7ee3)
+### Home screen
+![image](https://github.com/Chazzvdh/TaskVault/assets/114153884/9ea80d38-f32b-4d15-8391-8fcb831cac48)
+
+### Tasks Screen
+![image](https://github.com/Chazzvdh/TaskVault/assets/114153884/1e827b57-7845-4783-a86f-5a397a3101db)
+
+#### Edit Task
+![image](https://github.com/Chazzvdh/TaskVault/assets/114153884/d9e2d325-b637-4b84-9928-aecc877a731c)
 
 ## Getting Started
 
