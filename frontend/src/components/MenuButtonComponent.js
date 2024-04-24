@@ -1,4 +1,5 @@
 import {LitElement, css, html} from "lit";
+import {Router} from "@vaadin/router";
 
 export class MenuButtonComponent extends LitElement {
 
@@ -22,7 +23,7 @@ export class MenuButtonComponent extends LitElement {
     }
 
     handleClick() {
-        window.location.href = this.href;
+        Router.go(this.href);
     }
 
     static get styles() {

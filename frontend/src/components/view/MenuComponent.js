@@ -32,7 +32,7 @@ export class MenuComponent extends LitElement {
     render() {
         return html`
             <div class="flex-column" id="${this.scrolled ? 'menu1' : 'menu2'}">
-                <menu-button-element href="/home" text="Home"></menu-button-element>
+                <menu-button-element href="/" text="Home"></menu-button-element>
                 <menu-button-element href="/tasks" text="Tasks"></menu-button-element>
                 <menu-button-element href="/users" text="Users"></menu-button-element>
                 <menu-button-element href="/status" text="Status"></menu-button-element>
