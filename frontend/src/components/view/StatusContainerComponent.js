@@ -1,6 +1,6 @@
 import { LitElement, css, html } from 'lit';
-import './TaskComponent.js';
-import { API_URL } from "../application-info.js";
+import '../TaskComponent.js';
+import { API_URL } from "../../application-info.js";
 
 export class StatusContainerComponent extends LitElement {
     static get properties() {

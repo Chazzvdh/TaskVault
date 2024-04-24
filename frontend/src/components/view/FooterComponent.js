@@ -1,7 +1,7 @@
 import {LitElement, css, html} from "lit";
-import { VERSION } from '../application-info.js';
+import { VERSION } from '../../application-info.js';
 
-export class HeaderComponent extends LitElement {
+export class FooterComponent extends LitElement {
 
 
     constructor() {
@@ -10,52 +10,52 @@ export class HeaderComponent extends LitElement {
 
     render() {
         return html`
-            <div id="left" class="centered">
-                <img src="taskvault-logo.svg" alt="Task Vault Logo" style="width: calc(var(--header-height) - 21px);">
-                <span>Task Vault</span>
+            <div id="center" class="centered">
+                <span>Made with ❤️ by Chazz & Haider</span>
             </div>
-            <div id="right" class="centered">
+            <div>
+                <img src="razelogo-horizontal.svg" alt="taskvault-logo" style="width: 200px;">
+            </div>
+            <div>
                 <p>Version ${VERSION}</p>
             </div>
         `;
-    }
-
-    getVersion() {
-        return '0.0.1';
     }
 
     static get styles() {
         return css`
           :host {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             padding: 20px;
             background-color: var(--color-primary);
             color: var(--color-text);
             font-size: 1.5rem;
             font-weight: bold;
+            gap: 10px;
           }
           
           .centered {
-                display: flex;
-                align-items: center;
+            display: flex;
+            align-items: center;
           }
           
           span {
-            font-size: 1.5rem;
+            font-size: var(--text-size-3);
             font-weight: bold;
-            color: var(--color-text);
+            color: var(--text-secondary);
             margin-left: 10px;
           }
           
           p {
-            font-size: 1rem;
-            color: var(--color-text);
+            font-size: var(--text-size-1);
+            color: var(--text-secondary);
             margin: 0;
           }
         `;
     }
 }
 
-customElements.define('header-element', HeaderComponent);
+customElements.define('footer-element', FooterComponent);
