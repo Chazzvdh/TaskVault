@@ -1,4 +1,6 @@
+// HomeComponent.js
 import { LitElement, html, css } from 'lit';
+import '../TestimonialItemComponent.js';
 
 export class HomeComponent extends LitElement {
     static styles = css`
@@ -7,12 +9,12 @@ export class HomeComponent extends LitElement {
       text-align: center;
       padding: 2rem;
     }
-      
+
     .grid-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(3, auto);
-      grid-template-areas: 
+      grid-template-areas:
         "title title"
         "features features"
         "testimonial testimonial";
@@ -85,28 +87,30 @@ export class HomeComponent extends LitElement {
       color: var(--text-primary);
     }
 
-    .testimonial-item {
-      margin: 10px;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      background-color: var(--color-primary);
-    }
-
-    .testimonial p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-    }
-      
     .testimonial-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
     }
-      
+
     .title {
-        grid-area: title;
+      grid-area: title;
     }
   `;
+
+    static get properties() {
+        return {
+            testimonials: { type: Array }
+        };
+    }
+
+    constructor() {
+        super();
+        this.testimonials = [
+            { quote: "TaskVault has completely transformed the way our team manages tasks. It's intuitive, user-friendly, and incredibly efficient. Highly recommended!", author: "John Doe", position: "CEO, ABC Company", stars: 5},
+            { quote: "TaskVault has made task management a breeze for us. We love the simplicity and flexibility it offers. Great product!", author: "Jane Smith", position: "Project Manager, XYZ Inc.", stars: 5},
+            { quote: "We've tried many task management tools, but TaskVault stands out. It's easy to use, and the team collaboration features are fantastic!", author: "Mike Johnson", position: "Team Lead, QRS Corporation", stars: 5}
+        ];
+    }
 
     render() {
         return html`
@@ -128,20 +132,16 @@ export class HomeComponent extends LitElement {
         </div>
         <div class="testimonial">
           <h2>What our users say</h2>
-            <div class="testimonial-container">
-                <div class="testimonial-item">
-                    <p>"TaskVault has completely transformed the way our team manages tasks. It's intuitive, user-friendly, and incredibly efficient. Highly recommended!"</p>
-                    <p>- John Doe, CEO, ABC Company</p>
-                </div>
-                <div class="testimonial-item">
-                    <p>"TaskVault has made task management a breeze for us. We love the simplicity and flexibility it offers. Great product!"</p>
-                    <p>- Jane Smith, Project Manager, XYZ Inc.</p>
-                </div>
-                <div class="testimonial-item">
-                    <p>"We've tried many task management tools, but TaskVault stands out. It's easy to use, and the team collaboration features are fantastic!"</p>
-                    <p>- Mike Johnson, Team Lead, QRS Corporation</p>
-                </div>
-            </div>
+          <div class="testimonial-container">
+            ${this.testimonials.map(testimonial => html`
+              <testimonial-item-element
+                quote="${testimonial.quote}"
+                author="${testimonial.author}"
+                position="${testimonial.position}"
+                stars="${testimonial.stars ? testimonial.stars : 5}"
+              ></testimonial-item-element>
+            `)}
+          </div>
         </div>
       </div>
       <button class="cta-button">Get Started</button>

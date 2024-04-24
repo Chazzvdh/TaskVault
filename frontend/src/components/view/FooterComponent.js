@@ -46,7 +46,6 @@ export class FooterComponent extends LitElement {
             font-size: var(--text-size-3);
             font-weight: bold;
             color: var(--text-secondary);
-            margin-left: 10px;
           }
           
           p {
