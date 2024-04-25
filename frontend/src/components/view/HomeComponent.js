@@ -1,6 +1,8 @@
 // HomeComponent.js
 import { LitElement, html, css } from 'lit';
 import '../TestimonialItemComponent.js';
+import {Router} from "@vaadin/router";
+import {TestimonialUtil} from "../util/TestimonialUtil.js";
 
 export class HomeComponent extends LitElement {
     static styles = css`
@@ -105,18 +107,27 @@ export class HomeComponent extends LitElement {
 
     constructor() {
         super();
-        this.testimonials = [
-            { quote: "TaskVault has completely transformed the way our team manages tasks. It's intuitive, user-friendly, and incredibly efficient. Highly recommended!", author: "John Doe", position: "CEO, ABC Company", stars: 5},
-            { quote: "TaskVault has made task management a breeze for us. We love the simplicity and flexibility it offers. Great product!", author: "Jane Smith", position: "Project Manager, XYZ Inc.", stars: 5},
-            { quote: "We've tried many task management tools, but TaskVault stands out. It's easy to use, and the team collaboration features are fantastic!", author: "Mike Johnson", position: "Team Lead, QRS Corporation", stars: 5}
-        ];
+        this.testimonials = [];
+    }
+
+    async fetchTestimonials() {
+        this.testimonials = await TestimonialUtil.fetchTestimonials();
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        this.fetchTestimonials();
+    }
+
+    handleClick() {
+        Router.go('/tasks');
     }
 
     render() {
         return html`
       <div class="grid-container">
         <div class="title">
-          <img src="taskvault-logo-2.svg" alt="taskvault-logo" style="width: 200px;">
+          <img id="logo" src="taskvault-logo-2.svg" alt="taskvault-logo" style="width: 200px;">
           <h1>Welcome to TaskVault</h1>
           <p>Simplify task management with an intuitive application. Stay organized, collaborate effectively, and boost productivity with ease.</p>
         </div>
@@ -144,7 +155,7 @@ export class HomeComponent extends LitElement {
           </div>
         </div>
       </div>
-      <button class="cta-button">Get Started</button>
+      <button class="cta-button" @click="${this.handleClick}">Get Started</button>
     `;
     }
 }

@@ -1,10 +1,8 @@
 package com.razedigital.springboot.runner;
 
-import com.razedigital.springboot.domain.Priority;
-import com.razedigital.springboot.domain.Task;
-import com.razedigital.springboot.domain.TaskStatus;
-import com.razedigital.springboot.domain.User;
+import com.razedigital.springboot.domain.*;
 import com.razedigital.springboot.repository.TaskRepository;
+import com.razedigital.springboot.repository.TestimonialRepository;
 import com.razedigital.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +18,9 @@ public class DummyDataGenerator implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TestimonialRepository testimonialRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -185,5 +186,29 @@ public class DummyDataGenerator implements CommandLineRunner {
         task16.setStatus(TaskStatus.DONE);
         task16.setUser(user2);
         taskRepository.save(task16);
+
+        Testimonial testimonial1 = Testimonial.builder()
+                .quote("TaskVault helped us streamline our development process. Their platform is amazing!")
+                .author("John Doe")
+                .position("CTO, Tech Solutions Inc.")
+                .stars(5)
+                .build();
+        testimonialRepository.save(testimonial1);
+
+        Testimonial testimonial2 = Testimonial.builder()
+                .quote("Working with TaskVault was a fantastic experience. Their team is highly skilled and professional.")
+                .author("Jane Smith")
+                .position("CEO, Innovate Corp.")
+                .stars(4)
+                .build();
+        testimonialRepository.save(testimonial2);
+
+        Testimonial testimonial3 = Testimonial.builder()
+                .quote("We are extremely satisfied with the services provided by TaskVault. Highly recommended!")
+                .author("Alex Johnson")
+                .position("Lead Developer, CodeCrafters Ltd.")
+                .stars(5)
+                .build();
+        testimonialRepository.save(testimonial3);
     }
 }
