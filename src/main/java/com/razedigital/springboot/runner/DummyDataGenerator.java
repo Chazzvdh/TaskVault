@@ -210,5 +210,29 @@ public class DummyDataGenerator implements CommandLineRunner {
                 .stars(5)
                 .build();
         testimonialRepository.save(testimonial3);
+
+        Testimonial testimonial4 = Testimonial.builder()
+                .quote("TaskVault has been instrumental in helping us manage our projects efficiently. Great job!")
+                .author("Sarah Adams")
+                .position("Project Manager, Tech Innovations LLC")
+                .stars(4)
+                .build();
+        testimonialRepository.save(testimonial4);
+
+        Testimonial testimonial5 = Testimonial.builder()
+                .quote("TaskVault is a game-changer for our team. It has simplified our workflow and increased productivity.")
+                .author("Michael Brown")
+                .position("Lead Designer, Pixel Perfect Studios")
+                .stars(5)
+                .build();
+        testimonialRepository.save(testimonial5);
+
+        Testimonial testimonial6 = Testimonial.builder()
+                .quote("We have been using TaskVault for a few months, but it has been garbage. The platform is buggy and unreliable.")
+                .author("Haider Jirrie")
+                .position("Software Engineer, Haider Co.")
+                .stars(1)
+                .build();
+        testimonialRepository.save(testimonial6);
     }
 }
