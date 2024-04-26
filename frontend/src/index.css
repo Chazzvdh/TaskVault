@@ -1,12 +1,14 @@
 :root {
     --color-primary: #141617;
     --color-secondary: #22252a;
-    --color-tertiary: #343a40;
+    --color-tertiary: #58626c;
     --border-color: #4b535b;
 
     --text-primary: #f8f9fa;
     --text-secondary: #adb5bd;
     --text-dark: #000000;
+
+    --accent-color: #1890ff;
 
     --color-accent-green: #2dba4e;
     --color-accent-red: #ff4d4f;

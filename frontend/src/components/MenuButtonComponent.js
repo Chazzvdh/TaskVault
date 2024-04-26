@@ -40,7 +40,7 @@ export class MenuButtonComponent extends LitElement {
             }
           
             .menu-button:hover {
-              background-color: var(--color-tertiary);
+              background-color: var(--color-secondary);
             }
         `;
     }

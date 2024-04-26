@@ -1,38 +1,42 @@
-// TestimonialItem.js
 import { LitElement, html, css } from 'lit';
 import './IconComponent.js';
 
 export class TestimonialItemComponent extends LitElement {
     static styles = css`
-    .testimonial-item {
-      margin: 10px;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      background-color: var(--color-primary);
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .testimonial-item #title {
-      font-size: 1.1rem;
-      color: var(--text-primary);
-    }
+      .testimonial-item {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        background-color: var(--color-primary);
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: 0.5s ease;
+      }
       
-    .testimonial-item #author {
-      font-size: 1rem;
-      color: var(--text-secondary);
-    }
+      .testimonial-item:hover {
+        box-shadow: 0 0 10px 2px var(--color-tertiary);
+      }
 
-    .stars {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-      margin-top: 10px;
-    }
-  `;
+      .testimonial-item #title {
+        font-size: 1.1rem;
+        color: var(--text-primary);
+      }
+
+      .testimonial-item #author {
+        font-size: 1rem;
+        color: var(--text-secondary);
+      }
+
+      .stars {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 10px;
+      }
+    `;
 
     static properties = {
         quote: { type: String },

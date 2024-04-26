@@ -1,11 +1,27 @@
 import {LitElement, css, html} from "lit";
 import { VERSION } from '../../application-info.js';
+import {UserUtil} from "../util/UserUtil.js";
 
 export class HeaderComponent extends LitElement {
 
+    static get properties() {
+        return {
+            users: {type: Array}
+        };
+    }
 
     constructor() {
         super();
+        this.users = [];
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        this.fetchUsers();
+    }
+
+    async fetchUsers() {
+        this.users = await UserUtil.fetchUsers();
     }
 
     render() {
@@ -14,13 +30,12 @@ export class HeaderComponent extends LitElement {
                 <img src="taskvault-logo-2.svg" alt="Task Vault Logo" style="width: calc(var(--header-height));">
             </div>
             <div id="right" class="centered">
-                <p>Version ${VERSION}</p>
+                ${this.users.length > 0 ? html`
+                    <p id="username">${this.users[0].username}</p>
+                    <icon-element icon="account_circle"></icon-element>
+                ` : ''}
             </div>
         `;
-    }
-
-    getVersion() {
-        return '0.0.1';
     }
 
     static get styles() {
@@ -34,6 +49,12 @@ export class HeaderComponent extends LitElement {
             color: var(--color-text);
             font-size: 1.5rem;
             font-weight: bold;
+          }
+          
+          #right {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
           }
           
           .centered {
